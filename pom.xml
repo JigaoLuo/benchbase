@@ -48,6 +48,15 @@
         </repository>
     </distributionManagement>
 
+    <!-- Added for monetdb JDBC -->
+    <repositories>
+        <repository>
+            <id>clojars.org</id>
+            <name>Clojars</name>
+            <url>https://clojars.org/repo/</url>
+        </repository>
+    </repositories>
+
     <profiles>
         <profile>
             <id>sqlite</id>
@@ -94,7 +103,7 @@
                         </exclusion>
                     </exclusions>
                 </dependency> -->
-                
+
                 <!-- Taken from: https://clickhouse.com/docs/en/integrations/java -->
                 <dependency>
                     <groupId>com.clickhouse</groupId>
@@ -102,6 +111,20 @@
                     <version>0.5.0</version>
                     <!-- use uber jar with all dependencies included, change classifier to http for smaller jar -->
                     <classifier>all</classifier>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>monetdb</id>
+            <properties>
+                <classifier>monetdb</classifier>
+            </properties>
+            <dependencies>
+                <!-- https://mvnrepository.com/artifact/monetdb/monetdb-jdbc -->
+                <dependency>
+                    <groupId>monetdb</groupId>
+                    <artifactId>monetdb-jdbc</artifactId>
+                    <version>3.3</version>
                 </dependency>
             </dependencies>
         </profile>
