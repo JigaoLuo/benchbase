@@ -29,6 +29,10 @@ import java.util.Map;
  */
 public enum DatabaseType {
 
+    // Added by us
+    CLICKHOUSE(false, false, true),
+
+    // Original
     AMAZONRDS(true, false),
     CASSANDRA(true, true),
     COCKROACHDB(false, false, true),
