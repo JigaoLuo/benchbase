@@ -174,7 +174,7 @@ public class TemplatedBenchmark extends BenchmarkModule {
                 ImmutableParsedQueryTemplate.Builder b = ImmutableParsedQueryTemplate.builder();
                 b.name(template.getName());
                 b.query(template.getQuery());
-                b.paramsTypes(template.getTypes().getTypeList());
+                b.paramsTypes(template.getTypes() != null ? template.getTypes().getTypeList() : new ArrayList<>());
                 for (ValuesType paramValue : template.getValues()) {
                     b.addParamsValues(String.join(",", paramValue.getValueList()));
                 }
