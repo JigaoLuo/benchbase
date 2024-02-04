@@ -53,16 +53,16 @@ public abstract class GenericQuery extends Procedure {
                     LOG.debug(this.getClass().getName() + ": stmt: " + stmt.toString());
                 }
                 throw ex;
-            }
-        } finally {
-            // Close the ResultSet if it was opened
-            if (rs != null) {
+          } finally {
+              // Close the ResultSet if it was opened
+              if (rs != null) {
                 try {
                     rs.close();
                 } catch (SQLException e) {
                     // Handle the exception or log it
                 }
             }
+          }
         }
     }
 }
