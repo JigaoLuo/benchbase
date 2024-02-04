@@ -53,19 +53,26 @@ public class TPCHLoader extends Loader<TPCHBenchmark> {
         LONG, DOUBLE, STRING, DATE
     }
 
-    private static final CastTypes[] customerTypes = { CastTypes.LONG, // c_custkey
+    private static final CastTypes[] customerTypes = { 
+            // CastTypes.LONG, // c_custkey
+            CastTypes.STRING, // c_custkey
             CastTypes.STRING, // c_name
             CastTypes.STRING, // c_address
-            CastTypes.LONG, // c_nationkey
+            // CastTypes.LONG, // c_nationkey
+            CastTypes.STRING, // c_nationkey
             CastTypes.STRING, // c_phone
             CastTypes.DOUBLE, // c_acctbal
             CastTypes.STRING, // c_mktsegment
             CastTypes.STRING // c_comment
     };
 
-    private static final CastTypes[] lineitemTypes = { CastTypes.LONG, // l_orderkey
-            CastTypes.LONG, // l_partkey
-            CastTypes.LONG, // l_suppkey
+    private static final CastTypes[] lineitemTypes = { 
+            // CastTypes.LONG, // l_orderkey
+            CastTypes.STRING, // l_orderkey
+            // CastTypes.LONG, // l_partkey
+            CastTypes.STRING, // l_partkey
+            // CastTypes.LONG, // l_suppkey
+            CastTypes.STRING, // l_suppkey
             CastTypes.LONG, // l_linenumber
             CastTypes.DOUBLE, // l_quantity
             CastTypes.DOUBLE, // l_extendedprice
@@ -81,14 +88,20 @@ public class TPCHLoader extends Loader<TPCHBenchmark> {
             CastTypes.STRING // l_comment
     };
 
-    private static final CastTypes[] nationTypes = { CastTypes.LONG, // n_nationkey
+    private static final CastTypes[] nationTypes = { 
+            // CastTypes.LONG, // n_nationkey
+            CastTypes.STRING, // n_nationkey
             CastTypes.STRING, // n_name
-            CastTypes.LONG, // n_regionkey
+            // CastTypes.LONG, // n_regionkey
+            CastTypes.STRING, // n_regionkey
             CastTypes.STRING // n_comment
     };
 
-    private static final CastTypes[] ordersTypes = { CastTypes.LONG, // o_orderkey
-            CastTypes.LONG, // o_LONG, custkey
+    private static final CastTypes[] ordersTypes = { 
+            // CastTypes.LONG, // o_orderkey
+            CastTypes.STRING, // o_orderkey
+            // CastTypes.LONG, // o_custkey
+            CastTypes.STRING, // o_custkey
             CastTypes.STRING, // o_orderstatus
             CastTypes.DOUBLE, // o_totalprice
             CastTypes.DATE, // o_orderdate
@@ -98,7 +111,9 @@ public class TPCHLoader extends Loader<TPCHBenchmark> {
             CastTypes.STRING // o_comment
     };
 
-    private static final CastTypes[] partTypes = { CastTypes.LONG, // p_partkey
+    private static final CastTypes[] partTypes = { 
+            // CastTypes.LONG, // p_partkey
+            CastTypes.STRING, // p_partkey
             CastTypes.STRING, // p_name
             CastTypes.STRING, // p_mfgr
             CastTypes.STRING, // p_brand
@@ -109,22 +124,30 @@ public class TPCHLoader extends Loader<TPCHBenchmark> {
             CastTypes.STRING // p_comment
     };
 
-    private static final CastTypes[] partsuppTypes = { CastTypes.LONG, // ps_partkey
-            CastTypes.LONG, // ps_suppkey
+    private static final CastTypes[] partsuppTypes = { 
+            // CastTypes.LONG, // ps_partkey
+            CastTypes.STRING, // ps_partkey
+            // CastTypes.LONG, // ps_suppkey
+            CastTypes.STRING, // ps_suppkey
             CastTypes.LONG, // ps_availqty
             CastTypes.DOUBLE, // ps_supplycost
             CastTypes.STRING // ps_comment
     };
 
-    private static final CastTypes[] regionTypes = { CastTypes.LONG, // r_regionkey
+    private static final CastTypes[] regionTypes = { 
+            // CastTypes.LONG, // r_regionkey
+            CastTypes.STRING, // r_regionkey
             CastTypes.STRING, // r_name
             CastTypes.STRING // r_comment
     };
 
-    private static final CastTypes[] supplierTypes = { CastTypes.LONG, // s_suppkey
+    private static final CastTypes[] supplierTypes = { 
+            // CastTypes.LONG, // s_suppkey
+            CastTypes.STRING, // s_suppkey
             CastTypes.STRING, // s_name
             CastTypes.STRING, // s_address
-            CastTypes.LONG, // s_nationkey
+            // CastTypes.LONG, // s_nationkey
+            CastTypes.STRING, // s_nationkey
             CastTypes.STRING, // s_phone
             CastTypes.DOUBLE, // s_acctbal
             CastTypes.STRING, // s_comment
