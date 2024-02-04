@@ -8,7 +8,9 @@ DROP TABLE IF EXISTS customer CASCADE;
 DROP TABLE IF EXISTS lineitem CASCADE;
 
 CREATE TABLE region (
-    r_regionkey integer  NOT NULL,
+    -- r_regionkey integer  NOT NULL,
+    r_regionkey char(1)  NOT NULL,
+
     r_name      char(25) NOT NULL,
     r_comment   varchar(152),
     PRIMARY KEY (r_regionkey)
@@ -16,9 +18,14 @@ CREATE TABLE region (
 CREATE UNIQUE INDEX r_rk ON region (r_regionkey ASC);
 
 CREATE TABLE nation (
-    n_nationkey integer  NOT NULL,
+    -- n_nationkey integer  NOT NULL,
+    n_nationkey char(2)  NOT NULL,
+    
     n_name      char(25) NOT NULL,
-    n_regionkey integer  NOT NULL,
+    
+    -- n_regionkey integer  NOT NULL,
+    n_regionkey char(1)  NOT NULL,
+    
     n_comment   varchar(152),
     PRIMARY KEY (n_nationkey),
     FOREIGN KEY (n_regionkey) REFERENCES region (r_regionkey) ON DELETE CASCADE
@@ -27,7 +34,9 @@ CREATE UNIQUE INDEX n_nk ON nation (n_nationkey ASC);
 CREATE INDEX n_rk ON nation (n_regionkey ASC);
 
 CREATE TABLE part (
-    p_partkey     integer        NOT NULL,
+    -- p_partkey     integer        NOT NULL,
+    p_partkey     varchar(10)        NOT NULL,
+
     p_name        varchar(55)    NOT NULL,
     p_mfgr        char(25)       NOT NULL,
     p_brand       char(10)       NOT NULL,
@@ -41,10 +50,15 @@ CREATE TABLE part (
 CREATE UNIQUE INDEX p_pk ON part (p_partkey ASC);
 
 CREATE TABLE supplier (
-    s_suppkey   integer        NOT NULL,
+    -- s_suppkey   integer        NOT NULL,
+    s_suppkey   varchar(10)        NOT NULL,
+
     s_name      char(25)       NOT NULL,
     s_address   varchar(40)    NOT NULL,
-    s_nationkey integer        NOT NULL,
+
+    -- s_nationkey integer        NOT NULL,
+    s_nationkey char(2)        NOT NULL,
+
     s_phone     char(15)       NOT NULL,
     s_acctbal   decimal(15, 2) NOT NULL,
     s_comment   varchar(101)   NOT NULL,
@@ -55,8 +69,11 @@ CREATE UNIQUE INDEX s_sk ON supplier (s_suppkey ASC);
 CREATE INDEX s_nk ON supplier (s_nationkey ASC);
 
 CREATE TABLE partsupp (
-    ps_partkey    integer        NOT NULL,
-    ps_suppkey    integer        NOT NULL,
+    -- ps_partkey    integer        NOT NULL,
+    ps_partkey    varchar(10)        NOT NULL,
+    -- ps_suppkey    integer        NOT NULL,
+    ps_suppkey    varchar(10)        NOT NULL,
+
     ps_availqty   integer        NOT NULL,
     ps_supplycost decimal(15, 2) NOT NULL,
     ps_comment    varchar(199)   NOT NULL,
@@ -70,10 +87,15 @@ CREATE UNIQUE INDEX ps_pk_sk ON partsupp (ps_partkey ASC, ps_suppkey ASC);
 CREATE UNIQUE INDEX ps_sk_pk ON partsupp (ps_suppkey ASC, ps_partkey ASC);
 
 CREATE TABLE customer (
-    c_custkey    integer        NOT NULL,
+    -- c_custkey    integer        NOT NULL,
+    c_custkey    varchar(10)        NOT NULL,
+
     c_name       varchar(25)    NOT NULL,
     c_address    varchar(40)    NOT NULL,
-    c_nationkey  integer        NOT NULL,
+
+    -- c_nationkey  integer        NOT NULL,
+    c_nationkey  char(2)        NOT NULL,
+
     c_phone      char(15)       NOT NULL,
     c_acctbal    decimal(15, 2) NOT NULL,
     c_mktsegment char(10)       NOT NULL,
@@ -85,8 +107,11 @@ CREATE UNIQUE INDEX c_ck ON customer (c_custkey ASC);
 CREATE INDEX c_nk ON customer (c_nationkey ASC);
 
 CREATE TABLE orders (
-    o_orderkey      integer        NOT NULL,
-    o_custkey       integer        NOT NULL,
+    -- o_orderkey      integer        NOT NULL,
+    o_orderkey      varchar(10)        NOT NULL,
+    -- o_custkey       integer        NOT NULL,
+    o_custkey       varchar(10)        NOT NULL,
+
     o_orderstatus   char(1)        NOT NULL,
     o_totalprice    decimal(15, 2) NOT NULL,
     o_orderdate     date           NOT NULL,
@@ -102,9 +127,13 @@ CREATE INDEX o_ck ON orders (o_custkey ASC);
 CREATE INDEX o_od ON orders (o_orderdate ASC);
 
 CREATE TABLE lineitem (
-    l_orderkey      integer        NOT NULL,
-    l_partkey       integer        NOT NULL,
-    l_suppkey       integer        NOT NULL,
+    -- l_orderkey      integer        NOT NULL,
+    l_orderkey      varchar(10)        NOT NULL,
+    -- l_partkey       integer        NOT NULL,
+    l_partkey       varchar(10)        NOT NULL,
+    -- l_suppkey       integer        NOT NULL,
+    l_suppkey       varchar(10)        NOT NULL,
+
     l_linenumber    integer        NOT NULL,
     l_quantity      decimal(15, 2) NOT NULL,
     l_extendedprice decimal(15, 2) NOT NULL,
