@@ -48,11 +48,42 @@ public abstract class GenericQuery extends Procedure {
     public void run(Connection conn) throws SQLException {
         QueryTemplateInfo queryTemplateInfo = this.getQueryTemplateInfo();
 
-        try (PreparedStatement stmt = this.getPreparedStatement(conn, queryTemplateInfo.getQuery()); ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                //do nothing
+        //try (PreparedStatement stmt = this.getPreparedStatement(conn, queryTemplateInfo.getQuery()); ResultSet rs = stmt.executeQuery()) {
+        //    while (rs.next()) {
+        //        //do nothing
+        //    }
+        //}
+
+        try (PreparedStatement stmt = this.getPreparedStatement(conn, queryTemplateInfo.getQuery())) {
+          ResultSet rs = null;
+          try { 
+            boolean isResultSet = stmt.execute();
+            if (isResultSet) {
+              /// SELECT Query
+              rs = stmt.getResultSet();
+              while (rs.next()) {
+                // do nothing
+              }
+            } else {
+              /// Non-SELECT Query
             }
+          } catch (SQLSyntaxErrorException ex) {
+                if (LOG.isDebugEnabled()) {
+                    LOG.debug(this.getClass().getName() + ": stmt: " + stmt.toString());
+                }
+                throw ex;
+          } finally {
+              // Close the ResultSet if it was opened
+              if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    // Handle the exception or log it
+                }
+            }
+          }
         }
+
         conn.commit();
     }
 
