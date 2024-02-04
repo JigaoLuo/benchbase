@@ -133,7 +133,9 @@ public class PartGenerator
             int brand = manufacturer * 10 + brandRandom.nextValue();
 
             List<Object> part = new ArrayList<Object>();
-            part.add(partKey);
+            // part.add(partKey);
+            String p_partkey = String.valueOf(partKey);
+            part.add(p_partkey);
             part.add(name);
             part.add(String.format(ENGLISH, "Manufacturer#%d", manufacturer));
             part.add(String.format(ENGLISH, "Brand#%d", brand));

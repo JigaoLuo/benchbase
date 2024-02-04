@@ -170,10 +170,14 @@ public class SupplierGenerator
             long nationKey = nationKeyRandom.nextValue();
 
             List<Object> supplier = new ArrayList<Object>();
-            supplier.add(supplierKey);
+            // supplier.add(supplierKey);
+            String s_suppkey = String.valueOf(supplierKey);
+            supplier.add(s_suppkey);
             supplier.add(String.format(ENGLISH, "Supplier#%09d", supplierKey));
             supplier.add(addressRandom.nextValue());
-            supplier.add(nationKey);
+            // supplier.add(nationKey);
+            String s_nationkey = String.valueOf(nationKey);
+            supplier.add(s_nationkey);
             supplier.add(phoneRandom.nextValue(nationKey));
             supplier.add((double) accountBalanceRandom.nextValue() / 100.);
             supplier.add(comment);

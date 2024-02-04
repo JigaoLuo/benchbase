@@ -62,7 +62,9 @@ public class RegionGenerator
         @Override
         public List<Object> next() {
             List<Object> region = new ArrayList<>();
-            region.add((long) index);
+            // region.add((long) index);
+            String r_regionkey = String.valueOf(index);   
+            region.add(r_regionkey);
             region.add(regions.getValue(index));
             region.add(commentRandom.nextValue());
 

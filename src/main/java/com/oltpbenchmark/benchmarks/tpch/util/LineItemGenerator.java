@@ -245,9 +245,15 @@ public class LineItemGenerator
             String comment = commentRandom.nextValue();
 
             List<Object> lineItem = new ArrayList<>();
-            lineItem.add(orderKey);
-            lineItem.add(partKey);
-            lineItem.add(supplierKey);
+            // lineItem.add(orderKey);
+            String l_orderkey = String.valueOf(orderKey);
+            lineItem.add(l_orderkey);
+            // lineItem.add(partKey);
+            String l_partkey = String.valueOf(partKey);
+            lineItem.add(l_partkey);
+            // lineItem.add(supplierKey);
+            String l_suppkey = String.valueOf(supplierKey);
+            lineItem.add(l_suppkey);
             lineItem.add((long) (lineNumber + 1));
             lineItem.add((double) quantity);
             lineItem.add((double) extendedPrice / 100.);

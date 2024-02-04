@@ -122,10 +122,14 @@ public class CustomerGenerator implements Iterable<List<Object>> {
 
             List<Object> customer = new ArrayList<>();
 
-            customer.add(customerKey);
+            // customer.add(customerKey);
+            String c_custkey = String.valueOf(customerKey);
+            customer.add(c_custkey);
             customer.add(String.format(ENGLISH, "Customer#%09d", customerKey));
             customer.add(addressRandom.nextValue());
-            customer.add(nationKey);
+            // customer.add(nationKey);
+            String c_nationkey = String.valueOf(nationKey);
+            customer.add(c_nationkey);
             customer.add(phoneRandom.nextValue(nationKey));
             customer.add((double) accountBalanceRandom.nextValue() / 100.);
             customer.add(marketSegmentRandom.nextValue());

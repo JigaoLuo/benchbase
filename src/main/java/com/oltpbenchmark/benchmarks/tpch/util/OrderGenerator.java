@@ -212,8 +212,12 @@ public class OrderGenerator
             }
 
             List<Object> order = new ArrayList<>();
-            order.add(orderKey);
-            order.add(customerKey);
+            // order.add(orderKey);
+            String o_orderkey = String.valueOf(orderKey);
+            order.add(o_orderkey);
+            // order.add(customerKey);
+            String o_custkey = String.valueOf(customerKey);
+            order.add(o_custkey);
             order.add(Character.valueOf(orderStatus).toString());
             order.add((double) totalPrice / 100.);
             order.add(toEpochDate(orderDate));

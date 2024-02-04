@@ -118,8 +118,13 @@ public class PartSupplierGenerator
 
         private List<Object> makePartSupplier(long partKey) {
             List<Object> partSupplier = new ArrayList<>();
-            partSupplier.add(partKey);
-            partSupplier.add(selectPartSupplier(partKey, partSupplierNumber, scaleFactor));
+            // partSupplier.add(partKey);
+            String ps_partkey = String.valueOf(partKey);
+            partSupplier.add(ps_partkey);
+            // partSupplier.add(selectPartSupplier(partKey, partSupplierNumber, scaleFactor));
+            long suppkey = selectPartSupplier(partKey, partSupplierNumber, scaleFactor);
+            String ps_suppkey = String.valueOf(suppkey);
+            partSupplier.add(ps_suppkey);
             partSupplier.add((long) availableQuantityRandom.nextValue());
             partSupplier.add((double) supplyCostRandom.nextValue() / 100.);
             partSupplier.add(commentRandom.nextValue());

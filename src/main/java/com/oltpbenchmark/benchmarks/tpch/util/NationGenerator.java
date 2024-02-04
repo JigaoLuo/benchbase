@@ -62,9 +62,13 @@ public class NationGenerator
         @Override
         public List<Object> next() {
             List<Object> nation = new ArrayList<>();
-            nation.add((long) index);
+            // nation.add((long) index);
+            String n_nationkey = String.valueOf(index);
+            nation.add(n_nationkey);
             nation.add(nations.getValue(index));
-            nation.add((long) nations.getWeight(index));
+            // nation.add((long) nations.getWeight(index));
+            String n_regionkey = String.valueOf(nations.getWeight(index));            
+            nation.add(n_regionkey);
             nation.add(commentRandom.nextValue());
 
             commentRandom.rowFinished();
