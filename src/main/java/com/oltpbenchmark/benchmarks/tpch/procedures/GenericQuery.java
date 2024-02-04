@@ -36,12 +36,17 @@ public abstract class GenericQuery extends Procedure {
 
     public void run(Connection conn, RandomGenerator rand, double scaleFactor) throws SQLException {
         try (PreparedStatement stmt = getStatement(conn, rand, scaleFactor)) {
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    //do nothing
-                }
+          try (boolean isResultSet = stmt.execute()) {
+            if (isResultSet) {
+              /// SELECT Query
+              ResultSet rs = stmt.getResultSet();
+              while (rs.next()) {
+                // do nothing
+              }
+            } else {
+              /// Non-SELECT Query
             }
-            catch (SQLSyntaxErrorException ex) {
+          } catch (SQLSyntaxErrorException ex) {
                 if (LOG.isDebugEnabled()) {
                     LOG.debug(this.getClass().getName() + ": stmt: " + stmt.toString());
                 }
