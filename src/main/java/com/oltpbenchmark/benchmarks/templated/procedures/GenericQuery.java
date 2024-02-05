@@ -79,7 +79,7 @@ public abstract class GenericQuery extends Procedure {
             }
           } else {
             /// Non-SELECT Query
-            LOG.info("NON-SELECT QUERY EXECUTED SUCCESSFULLY!");
+            LOG.info("NON-SELECT SQL EXECUTED SUCCESSFULLY!");
           }
         }
         conn.commit();
