@@ -63,6 +63,11 @@ public abstract class GenericQuery extends Procedure {
             if (rs != null) {
               ResultSetMetaData rsmd = rs.getMetaData();
               int columnsNumber = rsmd.getColumnCount();
+              for (int i = 0; i < cols; i++) {
+                String name = md.getColumnLabel(i);
+                System.out.print(name + " ");
+              }
+              System.out.println();
               while (rs.next()) {
                 // do nothing
                 for(int i = 1; i < columnsNumber; i++)
