@@ -75,6 +75,8 @@ public abstract class GenericQuery extends Procedure {
                   System.out.print(rs.getString(i) + " ");
                 System.out.println();
               }
+            } else {
+              System.out.println("RESULTSET NULL");
             }
           } else {
             /// Non-SELECT Query
