@@ -61,9 +61,13 @@ public abstract class GenericQuery extends Procedure {
             ResultSet rs = stmt.getResultSet();
             while (rs.next()) {
               // do nothing
+              for(int i = 1; i < columnsNumber; i++)
+                System.out.print(rs.getString(i) + " ");
+              System.out.println();
             }
           } else {
             /// Non-SELECT Query
+            System.out.println("NON-SELECT QUERY EXECUTED SUCCESSFULLY!");
           }
         }
         conn.commit();
