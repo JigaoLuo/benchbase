@@ -72,7 +72,7 @@ public abstract class GenericQuery extends Procedure {
               System.out.println();
               while (rs.next()) {
                 // do nothing
-                for(int i = 1; i < columnsNumber; i++) {
+                for(int i = 1; i < columnsNumber + 1; i++) {
                     int columnType = rsmd.getColumnType(i);
                     switch (columnType) {
                         case Types.INTEGER:
