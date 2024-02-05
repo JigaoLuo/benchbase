@@ -66,7 +66,7 @@ public abstract class GenericQuery extends Procedure {
               int columnsNumber = rsmd.getColumnCount();
               System.out.println("Columns: " + columnsNumber);
               for (int i = 0; i < columnsNumber; i++) {
-                String name = md.getColumnLabel(i);
+                String name = rsmd.getColumnLabel(i);
                 System.out.print(name + " ");
               }
               System.out.println();
