@@ -65,14 +65,14 @@ public abstract class GenericQuery extends Procedure {
               int columnsNumber = rsmd.getColumnCount();
               for (int i = 0; i < cols; i++) {
                 String name = md.getColumnLabel(i);
-                LOG.info(name + " ");
+                System.out.print(name + " ");
               }
-              LOG.info("\n");
+              System.out.println();
               while (rs.next()) {
                 // do nothing
                 for(int i = 1; i < columnsNumber; i++)
-                  LOG.info(rs.getString(i) + " ");
-                LOG.info("\n");
+                  System.out.print(rs.getString(i) + " ");
+                System.out.println();
               }
             }
           } else {
