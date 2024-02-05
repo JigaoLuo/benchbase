@@ -59,6 +59,7 @@ public abstract class GenericQuery extends Procedure {
           boolean isResultSet = stmt.execute();
           if (isResultSet) {
             /// SELECT Query
+            System.out.println("SELECT QUERY EXECUTED SUCCESSFULLY!");
             ResultSet rs = stmt.getResultSet();
             {
               ResultSetMetaData rsmd = rs.getMetaData();
