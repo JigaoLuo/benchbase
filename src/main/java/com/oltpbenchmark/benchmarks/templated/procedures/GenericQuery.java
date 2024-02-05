@@ -59,13 +59,15 @@ public abstract class GenericQuery extends Procedure {
           if (isResultSet) {
             /// SELECT Query
             ResultSet rs = stmt.getResultSet();
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
-            while (rs.next()) {
-              // do nothing
-              for(int i = 1; i < columnsNumber; i++)
-                System.out.print(rs.getString(i) + " ");
-              System.out.println();
+            if (rs != null) {
+              ResultSetMetaData rsmd = rs.getMetaData();
+              int columnsNumber = rsmd.getColumnCount();
+              while (rs.next()) {
+                // do nothing
+                for(int i = 1; i < columnsNumber; i++)
+                  System.out.print(rs.getString(i) + " ");
+                System.out.println();
+              }
             }
           } else {
             /// Non-SELECT Query
