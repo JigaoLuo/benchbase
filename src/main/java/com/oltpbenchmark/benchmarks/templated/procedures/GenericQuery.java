@@ -72,8 +72,20 @@ public abstract class GenericQuery extends Procedure {
               System.out.println();
               while (rs.next()) {
                 // do nothing
-                for(int i = 1; i < columnsNumber; i++)
-                  System.out.print(rs.getString(i) + " ");
+                for(int i = 1; i < columnsNumber; i++) {
+                    int columnType = metaData.getColumnType(i);
+                    switch (columnType) {
+                        case Types.INTEGER:
+                            System.out.println(columnName + ": " + rs.getInt(i));
+                            break;
+                        case Types.VARCHAR:
+                            System.out.println(columnName + ": " + rs.getString(i));
+                            break;
+                        // Add more cases for other data types as needed
+                        default:
+                            System.out.println(columnName + ": " + rs.getObject(i));
+                    }
+                }
                 System.out.println();
               }
             }
