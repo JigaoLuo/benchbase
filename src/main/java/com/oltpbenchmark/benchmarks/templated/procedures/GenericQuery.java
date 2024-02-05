@@ -60,7 +60,7 @@ public abstract class GenericQuery extends Procedure {
           if (isResultSet) {
             /// SELECT Query
             ResultSet rs = stmt.getResultSet();
-            if (rs != null) {
+            {
               ResultSetMetaData rsmd = rs.getMetaData();
               int columnsNumber = rsmd.getColumnCount();
               System.out.println("Columns: " + columnsNumber);
@@ -75,8 +75,6 @@ public abstract class GenericQuery extends Procedure {
                   System.out.print(rs.getString(i) + " ");
                 System.out.println();
               }
-            } else {
-              System.out.println("RESULTSET NULL");
             }
           } else {
             /// Non-SELECT Query
