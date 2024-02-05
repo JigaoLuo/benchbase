@@ -76,14 +76,14 @@ public abstract class GenericQuery extends Procedure {
                     int columnType = rsmd.getColumnType(i);
                     switch (columnType) {
                         case Types.INTEGER:
-                            System.out.print(rs.getInt(i) + " ");
+                            System.out.print(rs.getInt(i) + " - ");
                             break;
                         case Types.VARCHAR:
-                            System.out.print(rs.getString(i));
+                            System.out.print(rs.getString(i) + " - ");
                             break;
                         // Add more cases for other data types as needed
                         default:
-                            System.out.print(rs.getObject(i) + " ");
+                            System.out.print(rs.getObject(i) + " - ");
                     }
                 }
                 System.out.println();
