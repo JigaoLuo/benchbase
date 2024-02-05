@@ -65,7 +65,7 @@ public abstract class GenericQuery extends Procedure {
               ResultSetMetaData rsmd = rs.getMetaData();
               int columnsNumber = rsmd.getColumnCount();
               System.out.println("Columns: " + columnsNumber);
-              for (int i = 0; i < cols; i++) {
+              for (int i = 0; i < columnsNumber; i++) {
                 String name = md.getColumnLabel(i);
                 System.out.print(name + " ");
               }
