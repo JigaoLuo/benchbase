@@ -59,7 +59,7 @@ public abstract class GenericQuery extends Procedure {
           boolean isResultSet = stmt.execute();
           if (isResultSet) {
             /// SELECT Query
-            System.out.println("SELECT QUERY EXECUTED SUCCESSFULLY!");
+            LOG.info("SELECT QUERY EXECUTED SUCCESSFULLY!");
             ResultSet rs = stmt.getResultSet();
             {
               ResultSetMetaData rsmd = rs.getMetaData();
@@ -79,7 +79,7 @@ public abstract class GenericQuery extends Procedure {
             }
           } else {
             /// Non-SELECT Query
-            System.out.println("NON-SELECT QUERY EXECUTED SUCCESSFULLY!");
+            LOG.info("NON-SELECT QUERY EXECUTED SUCCESSFULLY!");
           }
         }
         conn.commit();
