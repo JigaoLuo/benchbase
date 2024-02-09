@@ -67,7 +67,7 @@ public abstract class GenericQuery extends Procedure {
             ResultSet rs = stmt.executeQuery(sql_str);
             while (rs.next()) {
                 String queryPlan = rs.getString(1); // Assuming the query plan is in the first column
-                LOG.info(queryPlan);
+                System.out.println(queryPlan);
             }
             conn.commit();
             return;
