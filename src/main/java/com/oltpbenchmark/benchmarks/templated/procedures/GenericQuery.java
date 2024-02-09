@@ -61,6 +61,8 @@ public abstract class GenericQuery extends Procedure {
             String sql_str = queryTemplateInfo.getQuery().getSQL().toLowerCase();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql_str);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
               while (rs.next()) {
                 // do nothing
                 for(int i = 1; i < columnsNumber + 1; i++) {
