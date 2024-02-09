@@ -56,69 +56,44 @@ public abstract class GenericQuery extends Procedure {
         //    }
         //}
 
-        // try (PreparedStatement stmt = this.getPreparedStatement(conn, queryTemplateInfo.getQuery())) {
-        try {
-            String sql_str = queryTemplateInfo.getQuery().getSQL().toLowerCase();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql_str);
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
-              while (rs.next()) {
-                // do nothing
-                for(int i = 1; i < columnsNumber + 1; i++) {
-                    int columnType = rsmd.getColumnType(i);
-                    switch (columnType) {
-                        case Types.INTEGER:
-                            System.out.print(rs.getInt(i) + " - ");
-                            break;
-                        case Types.VARCHAR:
-                            System.out.print(rs.getString(i) + " - ");
-                            break;
-                        // Add more cases for other data types as needed
-                        default:
-                            System.out.print(rs.getObject(i) + " - ");
-                    }
-                }
-                System.out.println();
-              }
-
-          // boolean isResultSet = stmt.execute();
-          // if (isResultSet) {
-          //   /// SELECT Query
-          //   LOG.info("SELECT QUERY EXECUTED SUCCESSFULLY!");
-          //   ResultSet rs = stmt.getResultSet();
-          //   {
-          //     ResultSetMetaData rsmd = rs.getMetaData();
-          //     int columnsNumber = rsmd.getColumnCount();
-          //     System.out.println("Columns: " + columnsNumber);
-          //     for (int i = 1; i < columnsNumber + 1; i++) {
-          //       String name = rsmd.getColumnLabel(i);
-          //       System.out.print(name + " ");
-          //     }
-          //     System.out.println();
-          //     while (rs.next()) {
-          //       // do nothing
-          //       for(int i = 1; i < columnsNumber + 1; i++) {
-          //           int columnType = rsmd.getColumnType(i);
-          //           switch (columnType) {
-          //               case Types.INTEGER:
-          //                   System.out.print(rs.getInt(i) + " - ");
-          //                   break;
-          //               case Types.VARCHAR:
-          //                   System.out.print(rs.getString(i) + " - ");
-          //                   break;
-          //               // Add more cases for other data types as needed
-          //               default:
-          //                   System.out.print(rs.getObject(i) + " - ");
-          //           }
-          //       }
-          //       System.out.println();
-          //     }
-          //  }
-          //} else {
-          //  /// Non-SELECT Query
-          //  LOG.info("NON-SELECT SQL EXECUTED SUCCESSFULLY!");
-          //}
+        try (PreparedStatement stmt = this.getPreparedStatement(conn, queryTemplateInfo.getQuery())) {
+           boolean isResultSet = stmt.execute();
+           if (isResultSet) {
+             /// SELECT Query
+             LOG.info("SELECT QUERY EXECUTED SUCCESSFULLY!");
+             ResultSet rs = stmt.getResultSet();
+             {
+               ResultSetMetaData rsmd = rs.getMetaData();
+               int columnsNumber = rsmd.getColumnCount();
+               System.out.println("Columns: " + columnsNumber);
+               for (int i = 1; i < columnsNumber + 1; i++) {
+                 String name = rsmd.getColumnLabel(i);
+                 System.out.print(name + " ");
+               }
+               System.out.println();
+               while (rs.next()) {
+                 // do nothing
+                 for(int i = 1; i < columnsNumber + 1; i++) {
+                     int columnType = rsmd.getColumnType(i);
+                     switch (columnType) {
+                         case Types.INTEGER:
+                             System.out.print(rs.getInt(i) + " - ");
+                             break;
+                         case Types.VARCHAR:
+                             System.out.print(rs.getString(i) + " - ");
+                             break;
+                         // Add more cases for other data types as needed
+                         default:
+                             System.out.print(rs.getObject(i) + " - ");
+                     }
+                 }
+                 System.out.println();
+               }
+            }
+          } else {
+            /// Non-SELECT Query
+            LOG.info("NON-SELECT SQL EXECUTED SUCCESSFULLY!");
+          }
         } catch (SQLException e) {
             String sql_str = queryTemplateInfo.getQuery().getSQL().toLowerCase();
             // Simple substring check
