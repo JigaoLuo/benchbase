@@ -55,6 +55,23 @@ public abstract class GenericQuery extends Procedure {
         //        //do nothing
         //    }
         //}
+    
+
+        /// CHECK: If the query is an EXPLAIN or PLAN query, then print the query plan and return:w
+        String sql_str = queryTemplateInfo.getQuery().getSQL().toLowerCase();
+        // Simple substring check
+        if ( sql_str.contains("explain") || sql_str.contains("plan") ) {
+            LOG.info("QUERY PLAN of:");
+            LOG.info(sql_str);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql_str);
+            while (rs.next()) {
+                String queryPlan = rs.getString(1); // Assuming the query plan is in the first column
+                LOG.info(queryPlan);
+            }
+            conn.commit();
+            return;
+        }
 
         try (PreparedStatement stmt = this.getPreparedStatement(conn, queryTemplateInfo.getQuery())) {
            boolean isResultSet = stmt.execute();
@@ -94,22 +111,7 @@ public abstract class GenericQuery extends Procedure {
             /// Non-SELECT Query
             LOG.info("NON-SELECT SQL EXECUTED SUCCESSFULLY!");
           }
-        } catch (SQLException e) {
-            String sql_str = queryTemplateInfo.getQuery().getSQL().toLowerCase();
-            // Simple substring check
-            if ( sql_str.contains("explain") || sql_str.contains("plan") ) {
-                LOG.info("QUERY PLAN of:");
-                LOG.info(sql_str);
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql_str);
-                while (rs.next()) {
-                    String queryPlan = rs.getString(1); // Assuming the query plan is in the first column
-                    LOG.info(queryPlan);
-                }
-            } else {
-                throw e;
-            }
-        }
+        } 
         conn.commit();
     }
 
